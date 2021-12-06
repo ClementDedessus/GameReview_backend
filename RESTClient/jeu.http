@@ -1,39 +1,51 @@
 ######### NORMAL OPERATION  ###########
 
 ### Read all games
-GET http://localhost:3000/jeux
+GET http://localhost:30025/jeu
 
 ### Read game identified by 2
-GET http://localhost:3000/jeux/2
+GET http://localhost:30025/jeu/2
 
 ### Create a game
-POST http://localhost:3000/jeux
+POST http://localhost:30025/jeu
 Content-Type: application/json
 
 {
-    "title":"Magic Green",
-    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+     "name": "Forza Horizon 15 ",
+     "age_ratings": 7,
+     "category": "course" ,
+     "cover": "https://www.google.com/imgres?imgurl=https%3A%2F%2Fs2.gaming-cdn.com%2Fimages%2Fproducts%2F8701%2Forig%2Fforza-horizon-5-pc-xbox-one-xbox-series-xs-pc-xbox-one-xbox-serie-x-s-jeu-microsoft-store-cover.jpg&imgrefurl=https%3A%2F%2Fwww.instant-gaming.com%2Ffr%2F8701-acheter-forza-horizon-5-pc-xbox-one-xbox-series-xs-pc-xbox-one-xbox-serie-x-s-jeu-microsoft-store%2F&tbnid=2iVpVSKICHyYhM&vet=12ahUKEwju79qCks_0AhVGuqQKHWUkDpgQMygAegUIARDwAQ..i&docid=wGZIb_WRAW599M&w=1438&h=2001&itg=1&q=forza%20horizon%205&hl=fr&ved=2ahUKEwju79qCks_0AhVGuqQKHWUkDpgQMygAegUIARDwAQ",
+     "first_release_date": " 04 novembre 2021 ",
+     "involved_companies" :" Playground Games",
+     "keywords": " course ",
+     "multiplayer_modes": "oui" ,
+     "platforms": "PC- XBOX SERIE X- XBOX ONE ", 
+     "rating": 15.1,
+     "screenshots": "false", 
+     "summary": "Forza Horizon 5 est un jeu de course en monde ouvert développé par Playground Games. Il prend place dans les villes et magnifiques décors du Mexique. Le jeu propose aussi bien des courses solo que des épreuves compétitives et collaboratives en ligne.", 
+     "url": "https://www.xbox.com/fr-BE/games/store/forza-horizon-5-edition-standard/9NKX70BBCDRN",
+     "videos": "false" 
 }
 
 ### Update the game identified by 2
-PUT http://localhost:3000/jeux/2
+PUT http://localhost:30025/jeu/3
 Content-Type: application/json
 
 {
-    "title":"Magic Green 2"
+     "name": "Forza Horizon 5 " 
 }
 
 ### Delete game identified by 2
-DELETE http://localhost:3000/jeux/2
+DELETE http://localhost:30025/jeu/2
 
 
 ######### ERROR OPERATION  ###########
 
 ### Read game which does not exists
-GET http://localhost:3000/jeux/100
+GET http://localhost:30025/jeux/100
 
 ### Create a game without info for a property
-POST http://localhost:3000/jeu
+POST http://localhost:30025/jeu
 Content-Type: application/json
 
 {
@@ -42,7 +54,7 @@ Content-Type: application/json
 }
 
 ### Update for a game which does not exist
-PUT http://localhost:3000/jeux/200
+PUT http://localhost:30025/jeux/200
 Content-Type: application/json
 
 {
@@ -50,7 +62,7 @@ Content-Type: application/json
 }
 
 ### Update for a game which does not provide any info for a property
-PUT http://localhost:3000/jeux/1
+PUT http://localhost:30025/jeux/1
 Content-Type: application/json
 
 {

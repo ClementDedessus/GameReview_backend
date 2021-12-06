@@ -1,6 +1,7 @@
 "use strict"
 
 const { parse, serialize } = require("../utils/json");
+var escape = require("escape-html");
 
 const jsonDbPath = __dirname + "/../data/jeux.json";
 
@@ -154,6 +155,7 @@ const defaultJeux = [
         summary: body.summary ,   
         url: body.url,
         videos: body.videos ,
+        
        
       };
       jeux.push(newJeu);
@@ -243,6 +245,6 @@ class jeu{
 
 */
 
-module.exports= {Jeux};
+module.exports= { Jeux };
 
 
