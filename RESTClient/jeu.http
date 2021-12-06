@@ -1,0 +1,59 @@
+######### NORMAL OPERATION  ###########
+
+### Read all games
+GET http://localhost:3000/jeux
+
+### Read game identified by 2
+GET http://localhost:3000/jeux/2
+
+### Create a game
+POST http://localhost:3000/jeux
+Content-Type: application/json
+
+{
+    "title":"Magic Green",
+    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+}
+
+### Update the game identified by 2
+PUT http://localhost:3000/jeux/2
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2"
+}
+
+### Delete game identified by 2
+DELETE http://localhost:3000/jeux/2
+
+
+######### ERROR OPERATION  ###########
+
+### Read game which does not exists
+GET http://localhost:3000/jeux/100
+
+### Create a game without info for a property
+POST http://localhost:3000/jeu
+Content-Type: application/json
+
+{
+    "title":"",
+    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+}
+
+### Update for a game which does not exist
+PUT http://localhost:3000/jeux/200
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2"
+}
+
+### Update for a game which does not provide any info for a property
+PUT http://localhost:3000/jeux/1
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2",
+    "content":"1"
+}
