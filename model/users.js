@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 const { parse, serialize } = require("../utils/json");
 var escape = require("escape-html");
-const jwtSecret = "filmstest";
+const jwtSecret = "secrettest";
 const LIFETIME_JWT = 24 * 60 * 60 * 1000;
 
 const jsonDbPath = __dirname + "/../data/users.json";
@@ -100,6 +100,57 @@ class Users {
 
     authenticatedUser.token = token;
     return authenticatedUser;
+  }
+
+  updateOne(idValue, body, idKey = "id") {
+    const items = parse(this.jsonDbPath, this.defaultItems);
+    const foundIndex = items.findIndex((item) => item[idKey] == idValue);
+    if (foundIndex < 0) return;
+    // create a new object based on the existing item - prior to modification -
+    // and the properties requested to be updated (those in the body of the request)
+    // use of the spread operator to create a shallow copy and repl
+    const updateditem = { ...items[foundIndex], ...body };
+    // replace the item found at index : (or use splice)
+    items[foundIndex] = updateditem;
+
+    serialize(this.jsonDbPath, items);
+    return updateditem;
+  
+  }
+  async updateOnes(idValue, body, idKey = "id") {
+    const items = parse(this.jsonDbPath, this.defaultItems);
+    const foundIndex = items.findIndex((item) => item[idKey] == idValue);
+    if (foundIndex < 0) return;
+    // create a new object based on the existing item - prior to modification -
+    // and the properties requested to be updated (those in the body of the request)
+    // use of the spread operator to create a shallow copy and repl
+    const hashedPassword = await bcrypt.hash(body, saltRounds);
+    const updateditem = { ...items[foundIndex], ...hashedPassword };
+    // replace the item found at index : (or use splice)
+    items[foundIndex] = hashedPassword;
+    serialize(this.jsonDbPath, items);
+
+    return updateditem;
+  
+  }
+
+  async update(username, password) {
+    const items = parse(this.jsonDbPath, this.defaultItems);
+   const userFound = items.getOneByUsername(username)
+    // create a new object based on the existing item - prior to modification -
+    // and the properties requested to be updated (those in the body of the request)
+    // use of the spread operator to create a shallow copy and repl
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    userFound.password=hashedPassword
+  
+
+    serialize(this.jsonDbPath, userFound);
+    return userFound;
+  
+  }
+  async crypt(password){
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    return hashedPassword;
   }
 }
 

@@ -8,7 +8,7 @@ const jsonDbPath = __dirname + "/../data/jeux.json";
 const defaultJeux = [
   {
     id: 1 ,
-    name: "New World " ,
+    name: "New World" ,
     age_ratings:  16 ,
     category: "MMORPG" ,
     cover: "https://images.ctfassets.net/j95d1p8hsuun/6gC9WvAePBYvVW3b4LHMTI/24f791f3de9d6e332a73ad8f82639f60/NW_TWITTERSHARE_600x300.jpg" ,
@@ -25,10 +25,10 @@ const defaultJeux = [
   },
   {
     id: 2 ,
-    name: "Forza Horizon 5 " ,
+    name: "Forza Horizon 5" ,
     age_ratings: 7 ,
     category: "course" ,
-    cover: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fs2.gaming-cdn.com%2Fimages%2Fproducts%2F8701%2Forig%2Fforza-horizon-5-pc-xbox-one-xbox-series-xs-pc-xbox-one-xbox-serie-x-s-jeu-microsoft-store-cover.jpg&imgrefurl=https%3A%2F%2Fwww.instant-gaming.com%2Ffr%2F8701-acheter-forza-horizon-5-pc-xbox-one-xbox-series-xs-pc-xbox-one-xbox-serie-x-s-jeu-microsoft-store%2F&tbnid=2iVpVSKICHyYhM&vet=12ahUKEwju79qCks_0AhVGuqQKHWUkDpgQMygAegUIARDwAQ..i&docid=wGZIb_WRAW599M&w=1438&h=2001&itg=1&q=forza%20horizon%205&hl=fr&ved=2ahUKEwju79qCks_0AhVGuqQKHWUkDpgQMygAegUIARDwAQ" ,
+    cover: "https://picfiles.alphacoders.com/478/478026.jpg" ,
     first_release_date: " 04 novembre 2021 " ,
     involved_companies :" Playground Games" ,
     keywords: " course " ,
@@ -43,10 +43,10 @@ const defaultJeux = [
 
   {
     id: 3 ,
-    name: " Battlefield 2042 " ,
+    name: "Battlefield 2042" ,
     age_ratings: 18 ,
     category: "FPS, Aventure, Action" ,
-    cover: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.journaldugeek.com%2Fcontent%2Fuploads%2F2021%2F06%2Fbf-2042-section-bg-homepage-hero-keyart-xl-adapt--320w.jpg&imgrefurl=https%3A%2F%2Fwww.journaldugeek.com%2F2021%2F12%2F03%2Fun-grand-nom-du-jeu-video-va-tenter-de-sauver-battlefield-2042%2F&tbnid=5sj8OYvsqg06EM&vet=12ahUKEwiJjoTak8_0AhWOt6QKHS_uDI0QMygAegUIARD9AQ..i&docid=YJqRCTYK0eAXeM&w=1534&h=1000&itg=1&q=battlefield%202042&hl=fr&ved=2ahUKEwiJjoTak8_0AhWOt6QKHS_uDI0QMygAegUIARD9AQ" ,
+    cover: "https://picfiles.alphacoders.com/453/453967.jpg" ,
     first_release_date: " 19 novembre 2021 " ,
     involved_companies :" DICE" ,
     keywords: "FPS " ,
@@ -64,7 +64,7 @@ const defaultJeux = [
     name: "It Takes Two" ,
     age_ratings: 12 ,
     category: "Aventure" ,
-    cover: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.presse-citron.net%2Fapp%2Fuploads%2F2021%2F04%2Ftest-it-takes-two.jpg&imgrefurl=https%3A%2F%2Fwww.presse-citron.net%2Ftest-it-takes-two-la-petite-douceur-de-ce-debut-dannee%2F&tbnid=24YobdF1bnZN6M&vet=12ahUKEwiI7uDols_0AhXSu6QKHfJZCHMQMygBegUIARCuAQ..i&docid=r1fhm91sPf2vXM&w=1400&h=932&q=it%20takes%20two&hl=fr&ved=2ahUKEwiI7uDols_0AhXSu6QKHfJZCHMQMygBegUIARCuAQ" ,
+    cover: "https://picfiles.alphacoders.com/469/469565.jpg" ,
     first_release_date: "  26 mars 2021 " ,
     involved_companies :" Electronic Arts" ,
     keywords: "Aventure " ,
@@ -82,7 +82,7 @@ const defaultJeux = [
     name: "NieR Replicant" ,
     age_ratings: 18 ,
     category: "Action, RPG" ,
-    cover: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fs3.gaming-cdn.com%2Fimages%2Fproducts%2F4082%2Forig%2Fjeu-steam-nierautomata-game-of-the-yorha-edition-cover.jpg&imgrefurl=https%3A%2F%2Fwww.instant-gaming.com%2Ffr%2F4082-acheter-jeu-steam-nierautomata-game-of-the-yorha-edition%2F&tbnid=5IrN2HuR0vqBOM&vet=12ahUKEwjkp8iLmM_0AhUaJcUKHUiWCYsQMygAegUIARDUAQ..i&docid=k1XmICn7dp8rEM&w=782&h=1088&q=nier%20automata&ved=2ahUKEwjkp8iLmM_0AhUaJcUKHUiWCYsQMygAegUIARDUAQ" ,
+    cover: "https://picfiles.alphacoders.com/129/129453.jpg" ,
     first_release_date: "  23 avril 2021 " ,
     involved_companies :"Square Enix " ,
     keywords: "Action, RPG" ,
@@ -115,19 +115,23 @@ const defaultJeux = [
     /**
      * Returns all games
      */
-    getAll() {
-      const jeux = parse(this.jsonDbPath, this.defaultJeux);
-      return jeux;
+    getAll(filterPredicate) {
+      let jeux;
+       jeux = parse(this.jsonDbPath, this.defaultJeux);
+      if (filterPredicate) return jeux.filter(filterPredicate);
+      else return jeux;
     }
-  
     /**
      * Returns the game identified by id
      */
-    getOne(id) {
+    
+    /**
+     * Returns the game identified by name
+     */
+    getOneByName(name) {
       const jeux = parse(this.jsonDbPath, this.defaultJeux);
-      const foundIndex = jeux.findIndex((jeu) => jeu.id == id);
+      const foundIndex = jeux.findIndex((jeu) => jeu.name == name);
       if (foundIndex < 0) return;
-  
       return jeux[foundIndex];
     }
   
@@ -141,22 +145,20 @@ const defaultJeux = [
       // add new game
       const newJeu = {
         id: this.getNextId(),
-        name: body.name,
-        age_ratings: body.age_ratings,
-        category: body.category ,
-        cover: body.cover ,
-        first_release_date: body.first_release_date ,
-        involved_companies : body.involved_companies ,
-        keywords: body.keywords ,
-        multiplayer_modes: body.multiplayer_modes,
-        platforms: body.platforms , 
-        rating: body.rating,
-        screenshots: body.screenshots, 
-        summary: body.summary ,   
-        url: body.url,
-        videos: body.videos ,
-        
-       
+        name: escape(body.name),
+        age_ratings: escape(body.age_ratings),
+        category: escape(body.category),
+        cover: escape(body.cover) ,
+        first_release_date: escape(body.first_release_date) ,
+        involved_companies : escape(body.involved_companies) ,
+        keywords: escape(body.keywords) ,
+        multiplayer_modes: escape(body.multiplayer_modes),
+        platforms: escape(body.platforms) , 
+        rating: escape(body.rating),
+        screenshots: escape(body.screenshots), 
+        summary: escape(body.summary) ,   
+        url: escape(body.url),
+        videos: escape(body.videos) 
       };
       jeux.push(newJeu);
       serialize(this.jsonDbPath, jeux);

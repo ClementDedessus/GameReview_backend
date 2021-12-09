@@ -19,7 +19,10 @@ router.post("/register", async function (req, res, next) {
   // Error code '409 Conflict' if the username already exists
   if (!authenticatedUser) return res.status(409).end();
 
-  return res.json(authenticatedUser);
+  req.session.username = authenticatedUser.username;
+  req.session.token = authenticatedUser.token;
+
+  return res.json({ username: authenticatedUser.username });
 });
 
 /* login a user : POST /auths/login */
@@ -39,7 +42,10 @@ router.post("/login", async function (req, res, next) {
   // Error code '401 Unauthorized' if the user could not be authenticated
   if (!authenticatedUser) return res.status(401).end();
 
-  return res.json(authenticatedUser);
+  req.session.username = authenticatedUser.username;
+  req.session.token = authenticatedUser.token;
+
+  return res.json({ username: authenticatedUser.username });
 });
 
 /* GET /auths/users : list all the users that can be authenticated 

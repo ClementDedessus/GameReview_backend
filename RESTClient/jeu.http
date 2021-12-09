@@ -1,30 +1,51 @@
-######### NORMAL OPERATION  ###########
+###
+@baseUrl = http://localhost:30027
 
-### Read all games
-GET http://localhost:30025/jeu
+###
 
-### Read game identified by 2
-GET http://localhost:30025/jeu/2
 
-### Create a game
-POST http://localhost:30025/jeu
+
+# @name k1
+
+POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
 {
-     "name": "Forza Horizon 15 ",
-     "age_ratings": 7,
-     "category": "course" ,
-     "cover": "https://www.google.com/imgres?imgurl=https%3A%2F%2Fs2.gaming-cdn.com%2Fimages%2Fproducts%2F8701%2Forig%2Fforza-horizon-5-pc-xbox-one-xbox-series-xs-pc-xbox-one-xbox-serie-x-s-jeu-microsoft-store-cover.jpg&imgrefurl=https%3A%2F%2Fwww.instant-gaming.com%2Ffr%2F8701-acheter-forza-horizon-5-pc-xbox-one-xbox-series-xs-pc-xbox-one-xbox-serie-x-s-jeu-microsoft-store%2F&tbnid=2iVpVSKICHyYhM&vet=12ahUKEwju79qCks_0AhVGuqQKHWUkDpgQMygAegUIARDwAQ..i&docid=wGZIb_WRAW599M&w=1438&h=2001&itg=1&q=forza%20horizon%205&hl=fr&ved=2ahUKEwju79qCks_0AhVGuqQKHWUkDpgQMygAegUIARDwAQ",
-     "first_release_date": " 04 novembre 2021 ",
-     "involved_companies" :" Playground Games",
-     "keywords": " course ",
-     "multiplayer_modes": "oui" ,
-     "platforms": "PC- XBOX SERIE X- XBOX ONE ", 
-     "rating": 15.1,
-     "screenshots": "false", 
-     "summary": "Forza Horizon 5 est un jeu de course en monde ouvert développé par Playground Games. Il prend place dans les villes et magnifiques décors du Mexique. Le jeu propose aussi bien des courses solo que des épreuves compétitives et collaboratives en ligne.", 
-     "url": "https://www.xbox.com/fr-BE/games/store/forza-horizon-5-edition-standard/9NKX70BBCDRN",
-     "videos": "false" 
+    "username":"k1",
+    "password":"k1"
+}
+###
+@k1ngtoken = {{k1.response.body.token}}
+
+### Read all games
+GET http://localhost:30027/jeu?age=New World 
+
+### Read game identified by 2
+GET http://localhost:30027/jeu/3
+###
+GET http://localhost:30027/jeu/New World 
+
+
+
+### Create a game
+POST http://localhost:30027/jeu
+Content-Type: application/json
+
+{
+  "name": "Gta",
+  "age_ratings": 18,
+  "category": "open world",
+  "cover": "https://picfiles.alphacoders.com/195/195645.jpg",
+  "first_release_date": "17 septembre 2013",
+  "involved_companies": "Rockstar Games",
+  "keywords": "jsp",
+  "multiplayer_modes": "oui",
+  "platforms": "PC- XBOX SERIE X- XBOX ONE, PS4, PS5 ",
+  "rating": 6,
+  "screenshots": false,
+  "summary": "GTA 5 est un jeu vidéo d'aventure et d'action qui consiste à faire des missions, des courses et plein d'autres activités pour gagner de l'argent et s'acheter des appartements, des maisons, des voitures ou des avions",
+  "url": "https://www.rockstargames.com ",
+  "videos": false 
 }
 
 ### Update the game identified by 2
