@@ -16,7 +16,7 @@ Content-Type: application/json
 
 {
     "username":"k1",
-    "password":"k1"
+    "password":"k2"
 }
 ###
 @k1ngtoken = {{k1.response.body.token}}
@@ -24,9 +24,9 @@ Content-Type: application/json
 
 
 ###
-PUT {{baseUrl}}/users/k1
+PUT {{baseUrl}}/users/k1/test
 Content-Type: application/json
 
 {
-    "password":"test1"
+    "password":"k2"
 }

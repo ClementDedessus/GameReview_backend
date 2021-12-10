@@ -50,5 +50,4 @@ const authorizeFromCookie = (req, res, next) => {
   }
 };
 
-
-module.exports = { authorize, authorizeFromCookie }; 
+module.exports = { authorize, authorizeFromCookie };
