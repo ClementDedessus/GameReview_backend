@@ -1,24 +1,40 @@
 var express = require("express");
 var path = require("path");
-var cookieParser = require("cookie-parser");
+var cookieSession = require("cookie-session");
 var logger = require("morgan");
 var authsRouter = require("./routes/auths");
-var jeuRouter = require("./routes/jeuRouter");
+var jeuRouter = require("./routes/jeu");
+var usersRouter = require("./routes/users");
 
-
+var cors = require("cors");
+let corsOptions = {
+  origin: "http://localhost:8080",
+};
 
 
 
 
 var app = express();
 
+let expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1h;
+app.use(
+  cookieSession({
+    name: "user",
+    keys: ["689HiHoveryDi79*"],
+    cookie: {
+      httpOnly: true,
+      expires: expiryDate,
+    },
+  })
+);
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 
-app.use("/auths", authsRouter);
-
+app.use("/auths", cors(corsOptions),authsRouter);
+app.use("/jeu", cors(corsOptions),jeuRouter);
+app.use("/users", cors(corsOptions),usersRouter);
 
 module.exports = app;

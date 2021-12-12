@@ -1,39 +1,72 @@
-######### NORMAL OPERATION  ###########
+###
+@baseUrl = http://localhost:30027
 
-### Read all games
-GET http://localhost:3000/jeux
+###
 
-### Read game identified by 2
-GET http://localhost:3000/jeux/2
 
-### Create a game
-POST http://localhost:3000/jeux
+
+# @name k1
+
+POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
 {
-    "title":"Magic Green",
-    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+    "username":"k1",
+    "password":"k1"
+}
+###
+@k1ngtoken = {{k1.response.body.token}}
+
+### Read all games
+GET http://localhost:30027/jeu?age=New World 
+
+### Read game identified by 2
+GET http://localhost:30027/jeu/3
+###
+GET http://localhost:30027/jeu/New World 
+
+
+
+### Create a game
+POST http://localhost:30027/jeu
+Content-Type: application/json
+
+{
+  "name": "Gta",
+  "age_ratings": 18,
+  "category": "open world",
+  "cover": "https://picfiles.alphacoders.com/195/195645.jpg",
+  "first_release_date": "17 septembre 2013",
+  "involved_companies": "Rockstar Games",
+  "keywords": "jsp",
+  "multiplayer_modes": "oui",
+  "platforms": "PC- XBOX SERIE X- XBOX ONE, PS4, PS5 ",
+  "rating": 6,
+  "screenshots": false,
+  "summary": "GTA 5 est un jeu vidéo d'aventure et d'action qui consiste à faire des missions, des courses et plein d'autres activités pour gagner de l'argent et s'acheter des appartements, des maisons, des voitures ou des avions",
+  "url": "https://www.rockstargames.com ",
+  "videos": false 
 }
 
 ### Update the game identified by 2
-PUT http://localhost:3000/jeux/2
+PUT http://localhost:30025/jeu/3
 Content-Type: application/json
 
 {
-    "title":"Magic Green 2"
+     "name": "Forza Horizon 5 " 
 }
 
 ### Delete game identified by 2
-DELETE http://localhost:3000/jeux/2
+DELETE http://localhost:30025/jeu/2
 
 
 ######### ERROR OPERATION  ###########
 
 ### Read game which does not exists
-GET http://localhost:3000/jeux/100
+GET http://localhost:30025/jeux/100
 
 ### Create a game without info for a property
-POST http://localhost:3000/jeu
+POST http://localhost:30025/jeu
 Content-Type: application/json
 
 {
@@ -42,7 +75,7 @@ Content-Type: application/json
 }
 
 ### Update for a game which does not exist
-PUT http://localhost:3000/jeux/200
+PUT http://localhost:30025/jeux/200
 Content-Type: application/json
 
 {
@@ -50,7 +83,7 @@ Content-Type: application/json
 }
 
 ### Update for a game which does not provide any info for a property
-PUT http://localhost:3000/jeux/1
+PUT http://localhost:30025/jeux/1
 Content-Type: application/json
 
 {

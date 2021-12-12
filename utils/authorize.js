@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const jwtSecret = "filmstest";
+const jwtSecret = "secrettest";
 
 const { Users } = require("../model/users");
 const userModel = new Users();
@@ -29,6 +29,25 @@ const authorize = (req, res, next) => {
     return res.status(403).end();
   }
 };
+const authorizeFromCookie = (req, res, next) => {
+  let token = req.session.token;
+  if (!token) return res.status(401).end();
 
+  try {
+    const decoded = jwt.verify(token, jwtSecret);
+    // check if decoded.username exists in users
+    const userFound = userModel.getOneByUsername(decoded.username);
 
-module.exports = { authorize }; 
+    if (!userFound) return res.status(403).end();
+
+    // we could load the user in the request.user object so that it is available by all
+    // other middleware
+    req.user = userFound;
+    next(); // call the next Middleware
+  } catch (err) {
+    console.error("authorize: ", err);
+    return res.status(403).end();
+  }
+};
+
+module.exports = { authorize, authorizeFromCookie };
