@@ -1,0 +1,20 @@
+@baseUrl = http://localhost:30027
+
+###
+
+
+###
+
+GEt {{baseUrl}}/commentaires      
+
+
+###
+POST {{baseUrl}}/commentaires
+Content-Type: application/json
+
+{
+    "message":"bonjour",
+    "expediteur": "k1"
+}
+###
+PUT {{baseUrl}}/commentaires
