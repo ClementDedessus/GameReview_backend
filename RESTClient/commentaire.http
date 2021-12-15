@@ -5,7 +5,7 @@
 
 ###
 
-GEt {{baseUrl}}/commentaires      
+GEt {{baseUrl}}/commentaires/ItTakesTwo     
 
 
 ###
@@ -13,8 +13,31 @@ POST {{baseUrl}}/commentaires
 Content-Type: application/json
 
 {
+    "game":"Battlefield 2042",
     "message":"bonjour",
     "expediteur": "k1"
+
 }
 ###
-PUT {{baseUrl}}/commentaires
+PUT {{baseUrl}}/commentaires/3
+
+###
+PUT {{baseUrl}}/commentaires/23
+
+
+###
+POST {{baseUrl}}/liked
+Content-Type: application/json
+
+{
+    "jeu":"Battlefield 2042",
+    "expediteur": "k1",
+    "evaluation":10
+
+}
+###
+GET {{baseUrl}}/liked/k1
+
+###
+GET {{baseUrl}}/liked
+

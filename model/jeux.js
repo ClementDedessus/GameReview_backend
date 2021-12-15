@@ -133,13 +133,33 @@ class Jeux {
   /**
    * Returns the game identified by name
    */
+
+   getOneByid() {
+     let id =  Math.floor(Math.random() * 10)
+    const jeux = parse(this.jsonDbPath, this.defaultJeux);
+    const foundIndex = jeux.findIndex((jeu) => jeu.id == id);
+    if (foundIndex < 0) return;
+    return jeux[foundIndex];
+  }
   getOneByName(name) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
     const foundIndex = jeux.findIndex((jeu) => jeu.name == name);
     if (foundIndex < 0) return;
     return jeux[foundIndex];
   }
-
+  /*
+  getOneByCategory(category) {
+    const jeux = parse(this.jsonDbPath, this.defaultJeux);
+    const foundIndex = jeux.findIndex((jeu) => jeu.category == category);
+    if (foundIndex < 0) return;
+    return jeux[foundIndex];
+  }
+  */
+  getOneByCategory(category) {
+    const jeux = parse(this.jsonDbPath, this.defaultJeux);
+    const foundIndex = jeux.filter((jeu) => jeu.category == category);
+    return foundIndex;
+  }
   /**
    * Add a game in the DB and returns the added game (containing a new id)
    */
@@ -187,6 +207,18 @@ class Jeux {
    * Update a game in the DB and return the updated game
    */
   updateOne(id, body) {
+    const jeux = parse(this.jsonDbPath, this.defaultJeux);
+    const foundIndex = jeux.findIndex((jeu) => jeu.id == id);
+    if (foundIndex < 0) return;
+    const updatedJeu = { ...jeux[foundIndex], ...body };
+
+    jeux[foundIndex] = updatedJeu;
+
+    serialize(this.jsonDbPath, jeux);
+    return updatedJeu;
+  }
+
+  updateRating(id, body) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
     const foundIndex = jeux.findIndex((jeu) => jeu.id == id);
     if (foundIndex < 0) return;

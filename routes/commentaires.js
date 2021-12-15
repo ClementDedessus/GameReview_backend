@@ -6,9 +6,9 @@ const { authorize } = require("../utils/authorize");
 const comModel = new Commentaire();
 
 
-router.get("", function (req, res) {
+router.get("/:game", function (req, res) {
     console.log("GET /commentaire");
-    return res.json(comModel.getAll());
+    return res.json(comModel.getGame(req.params.game));
   });
 
 
@@ -28,6 +28,14 @@ router.get("", function (req, res) {
   router.put("/:id", function (req, res) {
     // Send an error code '400 Bad request' if the body parameters are not valid
     const com = comModel.updateOne(req.params.id);
+    // Send an error code 'Not Found' if the game was not found :
+    if (!com) return res.status(404).end();
+    return res.json(com);
+  });
+
+  router.put("/dejalike/:id", function (req, res) {
+    // Send an error code '400 Bad request' if the body parameters are not valid
+    const com = comModel.updateOneDejalike(req.params.id);
     // Send an error code 'Not Found' if the game was not found :
     if (!com) return res.status(404).end();
     return res.json(com);

@@ -18,12 +18,12 @@ Content-Type: application/json
 @k1ngtoken = {{k1.response.body.token}}
 
 ### Read all games
-GET http://localhost:30027/jeu?age=New World 
+GET http://localhost:30027/jeu/recommandations/open world
 
 ### Read game identified by 2
 GET http://localhost:30027/jeu/3
 ###
-GET http://localhost:30027/jeu/New World 
+GET http://localhost:30027/jeu/id
 
 
 

@@ -40,6 +40,16 @@ router.get("/:name", function (req, res) {
   return res.json(jeu);
 });
 
+router.get("/id", function (req, res) {
+  console.log(`GET /jeux/${req.params.name}`);
+
+  const jeu = jeuModel.getOneByid();
+
+  if (!jeu) return res.status(404).end();
+
+  return res.json(jeu);
+});
+
 // POST /games : create a game to be added
 router.post("/", authorizeFromCookie, function (req, res) {
   console.log("POST /jeux");
@@ -114,4 +124,15 @@ router.put("/:id", function (req, res) {
   return res.json(jeu);
 });
 
+
+
+router.get("/recommandations/:category", function (req, res) {
+  console.log(`GET /jeux/${req.params.name}`);
+
+  const jeu = jeuModel.getOneByCategory(req.params.category);
+
+  if (!jeu) return res.status(404).end();
+
+  return res.json(jeu);
+});
 module.exports = router;
