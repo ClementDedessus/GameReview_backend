@@ -178,12 +178,9 @@ class Jeux {
       involved_companies: escape(body.involved_companies),
       keywords: escape(body.keywords),
       multiplayer_modes: escape(body.multiplayer_modes),
-      platforms: escape(body.platforms),
-      rating: escape(body.rating),
-      screenshots: escape(body.screenshots),
+      platforms: escape(body.platforms),   
       summary: escape(body.summary),
       url: escape(body.url),
-      videos: escape(body.videos),
     };
     jeux.push(newJeu);
     serialize(this.jsonDbPath, jeux);

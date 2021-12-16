@@ -65,19 +65,13 @@ router.post("/", authorizeFromCookie, function (req, res) {
       req.bodyfirst_release_date === 0) ||
     (req.body.hasOwnProperty("involved_companies") &&
       req.body.involved_companies.length === 0) ||
-    (req.body.hasOwnProperty("keywords") && req.body.keyword === 0) ||
     (req.body.hasOwnProperty("multiplayer_modes") &&
       req.body.multiplayer_modes.length === 0) ||
     (req.body.hasOwnProperty("platforms") && req.body.platforms.length === 0) ||
-    (req.body.hasOwnProperty("rating") && req.body.ratingt === 0) ||
-    (req.body.hasOwnProperty("screenshots") &&
-      req.body.screenshots.length === 0) ||
     (req.body.hasOwnProperty("summary") && req.body.summary.length === 0) ||
-    (req.body.hasOwnProperty("url") && req.body.url.length === 0) ||
-    (req.body.hasOwnProperty("videos") && req.body.videos.length === 0)
+    (req.body.hasOwnProperty("url") && req.body.url.length === 0)   
   )
     return res.status(400).end();
-  if (req.user.username !== "k1") return res.status(403).end();
 
   const jeu = jeuModel.addOne(req.body);
 
@@ -106,7 +100,6 @@ router.put("/:id", function (req, res) {
     !req.body.cover ||
     !req.body.first_release_date.length ||
     !req.body.involved_companies ||
-    !req.body.keyword ||
     !req.body.multiplayer_modes ||
     !req.body.platforms ||
     !req.body.ratingt ||
