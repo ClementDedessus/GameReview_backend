@@ -234,6 +234,13 @@ class Jeux {
     serialize(this.jsonDbPath, jeux);
     return updatedJeu;
   }
+
+  getBestGames(){
+    const jeux = parse(this.jsonDbPath, this.defaultJeux);
+    const tab = jeux.sort((a,b)=>b.rating-a.rating);
+    
+    return tab;
+  }
 }
 
 /* 
