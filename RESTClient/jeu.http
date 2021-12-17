@@ -1,8 +1,8 @@
-###
+###²
 @baseUrl = http://localhost:30027
 
 ###
-
+GET {{baseUrl}}/classement
 
 
 # @name k1
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
     "username":"k1",
-    "password":"k1"
+    "pas-+sword":"k1"
 }
 ###
 @k1ngtoken = {{k1.response.body.token}}
