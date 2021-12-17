@@ -134,6 +134,14 @@ class Jeux {
    * Returns the game identified by name
    */
 
+   getOne(id) {
+    const pizzas = parse(this.jsonDbPath, this.defaultPizzas);
+    const foundIndex = pizzas.findIndex((pizza) => pizza.id == id);
+    if (foundIndex < 0) return;
+
+    return pizzas[foundIndex];
+  }
+
    getOneByid() {
      let id =  Math.floor(Math.random() * 10)
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
