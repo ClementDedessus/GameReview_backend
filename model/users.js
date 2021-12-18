@@ -80,7 +80,7 @@ class Users {
   async login(username, password) {
     const userFound = this.getOneByUsername(username);
     if (!userFound) return;
-    // checked hash of passwords
+
     const match = await bcrypt.compare(password, userFound.password);
     if (!match) return;
 
@@ -103,11 +103,7 @@ class Users {
     const items = parse(this.jsonDbPath, this.defaultItems);
     const foundIndex = items.findIndex((item) => item[idKey] == idValue);
     if (foundIndex < 0) return;
-    // create a new object based on the existing item - prior to modification -
-    // and the properties requested to be updated (those in the body of the request)
-    // use of the spread operator to create a shallow copy and repl
     const updateditem = { ...items[foundIndex], ...body };
-    // replace the item found at index : (or use splice)
     items[foundIndex] = updateditem;
 
     serialize(this.jsonDbPath, items);
@@ -117,13 +113,9 @@ class Users {
     const items = parse(this.jsonDbPath, this.defaultItems);
     const foundIndex = items.findIndex((item) => item.username == username);
     if (foundIndex < 0) return;
-    // create a new object based on the existing item - prior to modification -
-    // and the properties requested to be updated (those in the body of the request)
-    // use of the spread operator to create a shallow copy and repl
     const hashedPassword = await bcrypt.hash(body, saltRounds);
     body = hashedPassword;
     const updateditem = { ...items[foundIndex], ...body };
-    // replace the item found at index : (or use splice)
     items[foundIndex].password = hashedPassword;
     serialize(this.jsonDbPath, items);
 
@@ -133,9 +125,6 @@ class Users {
   async update(username, password) {
     const items = parse(this.jsonDbPath, this.defaultItems);
     const userFound = items.getOneByUsername(username);
-    // create a new object based on the existing item - prior to modification -
-    // and the properties requested to be updated (those in the body of the request)
-    // use of the spread operator to create a shallow copy and repl
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     userFound.password = hashedPassword;
 

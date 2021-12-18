@@ -5,7 +5,8 @@ var logger = require("morgan");
 var authsRouter = require("./routes/auths");
 var jeuRouter = require("./routes/jeu");
 var usersRouter = require("./routes/users");
-
+var commentaireRouter = require("./routes/commentaires")
+var likeRouter = require("./routes/liked");
 var cors = require("cors");
 let corsOptions = {
   origin: "http://localhost:8080",
@@ -36,5 +37,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/auths", cors(corsOptions),authsRouter);
 app.use("/jeu", cors(corsOptions),jeuRouter);
 app.use("/users", cors(corsOptions),usersRouter);
+app.use("/commentaires", cors(corsOptions),commentaireRouter);
+app.use("/liked",cors(corsOptions),likeRouter)
+
 
 module.exports = app;
