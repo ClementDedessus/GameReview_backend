@@ -42,5 +42,9 @@
   {
     "username": "testa",
     "password": "$2b$10$mo0x5wOAnF0kGHhR8fYHPu/kPILuqJ8k00CF/5qMT5GWJb14APK6."
+  },
+  {
+    "username": "test",
+    "password": "$2b$10$fS82Mq8lPgO4QcOHYnegI.yyTKBtquFewx.DN.Sr1X40GL94EfZ3K"
   }
 ]

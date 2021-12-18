@@ -1,13 +1,12 @@
 "use strict";
 const { parse, serialize } = require("../utils/json");
 
-const jsonDbPath = __dirname + "/../data/coms.json";
+const jsonDbPath = __dirname + "/../data/commentaires.json";
 var escape = require("escape-html");
 
 class Commentaire {
   constructor(dbPath = jsonDbPath) {
     this.jsonDbPath = dbPath;
-
   }
 
   getNextId() {
@@ -15,16 +14,18 @@ class Commentaire {
     let nextId;
     if (coms.length === 0) nextId = 1;
     else nextId = coms[coms.length - 1].id + 1;
-
     return nextId;
   }
 
-getDateHour(){
-    
-        const date = new Date();
-        return date ;
-    
-}
+  getDateHour() {
+    const date = new Date();
+    let hour = date.getHours();
+    let min = date.getMinutes();
+    let day = date.getDate();
+    let month = date.getMonth();
+    let year = date.getFullYear();
+    return `${day}/${month}/${year}     ${hour}:${min}`;
+  }
 
   addOne(body) {
     const coms = parse(this.jsonDbPath);
@@ -32,51 +33,20 @@ getDateHour(){
       id: this.getNextId(),
       game: escape(body.game),
       message: escape(body.message),
-      date : this.getDateHour(),
-      expediteur : escape(body.expediteur),
-      like : 0,
-      
+      date: this.getDateHour(),
+      expediteur: escape(body.expediteur),
+      like: 0,
     };
     coms.push(newComs);
     serialize(this.jsonDbPath, coms);
     return newComs;
   }
 
-  getAll() {
-    const commentaires = parse(this.jsonDbPath);
-    return commentaires;
-  }
-
   getGame(game) {
     const all = parse(this.jsonDbPath);
-    return all.filter((commentaire) => commentaire.game == game) 
-    
-  }
-  updateOne(id) {
-    const coms = parse(this.jsonDbPath);
-    const foundIndex = coms.findIndex((com) => com.id == id);
-    const like = coms[foundIndex].like;
-    var updatedlike=like
-     updatedlike=like+1;
-    if (foundIndex < 0) return;
-    coms[foundIndex].like = updatedlike;
-
-    serialize(this.jsonDbPath, coms);
-    return coms[foundIndex];
+    return all.filter((commentaire) => commentaire.game == game);
   }
 
-  updateOneDejalike(id) {
-    const coms = parse(this.jsonDbPath);
-    const foundIndex = coms.findIndex((com) => com.id == id);
-    const like = coms[foundIndex].dejalike;
-    const updatedlike=true;
-    if (foundIndex < 0) return;
-    coms[foundIndex].dejalike = updatedlike;
-
-    serialize(this.jsonDbPath, coms);
-    return updatedlike;
-  }
 }
 
 module.exports = { Commentaire };
-
