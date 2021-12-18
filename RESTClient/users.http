@@ -8,17 +8,17 @@
 
 
 
-# @name test
+# @name k1
 
 POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
 {
-    "username":"test",
+    "username":"k1",
     "password":"k1"
 }
 ###
-@k1ngtoken = {{test.response.body.token}}
+@k1ngtoken = {{k1.response.body.token}}
 
 ###
 PUT {{baseUrl}}/users/test

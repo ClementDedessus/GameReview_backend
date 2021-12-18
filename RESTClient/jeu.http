@@ -1,8 +1,8 @@
-###
+###²
 @baseUrl = http://localhost:30027
 
 ###
-
+GET {{baseUrl}}/classement
 
 
 # @name k1
@@ -12,18 +12,18 @@ Content-Type: application/json
 
 {
     "username":"k1",
-    "password":"k1"
+    "pas-+sword":"k1"
 }
 ###
 @k1ngtoken = {{k1.response.body.token}}
 
 ### Read all games
-GET http://localhost:30027/jeu?age=New World 
+GET http://localhost:30027/jeu/recommandations/open world
 
 ### Read game identified by 2
 GET http://localhost:30027/jeu/3
 ###
-GET http://localhost:30027/jeu/New World 
+GET http://localhost:30027/jeu/id
 
 
 
@@ -38,14 +38,11 @@ Content-Type: application/json
   "cover": "https://picfiles.alphacoders.com/195/195645.jpg",
   "first_release_date": "17 septembre 2013",
   "involved_companies": "Rockstar Games",
-  "keywords": "jsp",
   "multiplayer_modes": "oui",
   "platforms": "PC- XBOX SERIE X- XBOX ONE, PS4, PS5 ",
-  "rating": 6,
-  "screenshots": false,
   "summary": "GTA 5 est un jeu vidéo d'aventure et d'action qui consiste à faire des missions, des courses et plein d'autres activités pour gagner de l'argent et s'acheter des appartements, des maisons, des voitures ou des avions",
-  "url": "https://www.rockstargames.com ",
-  "videos": false 
+  "url": "https://www.rockstargames.com "
+
 }
 
 ### Update the game identified by 2

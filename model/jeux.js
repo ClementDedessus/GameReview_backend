@@ -133,13 +133,41 @@ class Jeux {
   /**
    * Returns the game identified by name
    */
+
+   getOne(id) {
+    const pizzas = parse(this.jsonDbPath, this.defaultPizzas);
+    const foundIndex = pizzas.findIndex((pizza) => pizza.id == id);
+    if (foundIndex < 0) return;
+
+    return pizzas[foundIndex];
+  }
+
+   getOneByid() {
+     let id =  Math.floor(Math.random() * 10)
+    const jeux = parse(this.jsonDbPath, this.defaultJeux);
+    const foundIndex = jeux.findIndex((jeu) => jeu.id == id);
+    if (foundIndex < 0) return;
+    return jeux[foundIndex];
+  }
   getOneByName(name) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
     const foundIndex = jeux.findIndex((jeu) => jeu.name == name);
     if (foundIndex < 0) return;
     return jeux[foundIndex];
   }
-
+  /*
+  getOneByCategory(category) {
+    const jeux = parse(this.jsonDbPath, this.defaultJeux);
+    const foundIndex = jeux.findIndex((jeu) => jeu.category == category);
+    if (foundIndex < 0) return;
+    return jeux[foundIndex];
+  }
+  */
+  getOneByCategory(category) {
+    const jeux = parse(this.jsonDbPath, this.defaultJeux);
+    const foundIndex = jeux.filter((jeu) => jeu.category == category);
+    return foundIndex;
+  }
   /**
    * Add a game in the DB and returns the added game (containing a new id)
    */
@@ -158,12 +186,9 @@ class Jeux {
       involved_companies: escape(body.involved_companies),
       keywords: escape(body.keywords),
       multiplayer_modes: escape(body.multiplayer_modes),
-      platforms: escape(body.platforms),
-      rating: escape(body.rating),
-      screenshots: escape(body.screenshots),
+      platforms: escape(body.platforms),   
       summary: escape(body.summary),
       url: escape(body.url),
-      videos: escape(body.videos),
     };
     jeux.push(newJeu);
     serialize(this.jsonDbPath, jeux);
@@ -196,6 +221,25 @@ class Jeux {
 
     serialize(this.jsonDbPath, jeux);
     return updatedJeu;
+  }
+
+  updateRating(id, body) {
+    const jeux = parse(this.jsonDbPath, this.defaultJeux);
+    const foundIndex = jeux.findIndex((jeu) => jeu.id == id);
+    if (foundIndex < 0) return;
+    const updatedJeu = { ...jeux[foundIndex], ...body };
+
+    jeux[foundIndex] = updatedJeu;
+
+    serialize(this.jsonDbPath, jeux);
+    return updatedJeu;
+  }
+
+  getBestGames(){
+    const jeux = parse(this.jsonDbPath, this.defaultJeux);
+    const tab = jeux.sort((a,b)=>b.rating-a.rating);
+    
+    return tab;
   }
 }
 
