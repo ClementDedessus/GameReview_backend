@@ -10,7 +10,7 @@ router.get("/:game",authorizeFromCookie, function (req, res) {
   return res.json(comModel.getGame(req.params.game));
 });
 
-router.post("",authorizeFromCookie, function (req, res) {
+router.post("",  authorizeFromCookie, function (req, res) {
   if (
     !req.body ||
     (req.body.hasOwnProperty("message") && req.body.message.length === 0)
