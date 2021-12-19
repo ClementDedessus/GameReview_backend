@@ -24,7 +24,8 @@ GET http://localhost:30027/jeu/recommandations/open world
 GET http://localhost:30027/jeu/3
 ###
 GET http://localhost:30027/jeu/id
-
+### Read games
+GET {{baseUrl}}/jeu
 
 
 ### Create a game
