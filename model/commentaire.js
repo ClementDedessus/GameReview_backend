@@ -47,6 +47,18 @@ class Commentaire {
     return all.filter((commentaire) => commentaire.game == game);
   }
 
+  updateOne(id ) {
+    const coms = parse(this.jsonDbPath);
+    const foundIndex = coms.findIndex((com) => com.id == id);
+    const like = coms[foundIndex].like;
+    var updatedlike=like
+     updatedlike=like+1;
+    if (foundIndex < 0) return;
+    coms[foundIndex].like = updatedlike;
+
+    serialize(this.jsonDbPath, coms);
+    return coms[foundIndex];
+  }
 }
 
 module.exports = { Commentaire };
