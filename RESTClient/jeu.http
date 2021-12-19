@@ -32,7 +32,7 @@ POST http://localhost:30027/jeu
 Content-Type: application/json
 
 {
-  "name": "Gta",
+  "name": "Gtaa",
   "age_ratings": 18,
   "category": "open world",
   "cover": "https://picfiles.alphacoders.com/195/195645.jpg",
@@ -87,3 +87,11 @@ Content-Type: application/json
     "title":"Magic Green 2",
     "content":"1"
 }
+
+
+
+###
+GET http://localhost:30027/jeu/recommandations/Horror
+
+###
+GET http://localhost:30027/jeu/re/FPS

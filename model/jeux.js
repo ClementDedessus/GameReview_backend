@@ -1,8 +1,8 @@
+
 "use strict";
 
 const { parse, serialize } = require("../utils/json");
 var escape = require("escape-html");
-
 const jsonDbPath = __dirname + "/../data/jeux.json";
 
 const defaultJeux = [
@@ -113,23 +113,17 @@ class Jeux {
     let nextId;
     if (jeux.length === 0) nextId = 1;
     else nextId = jeux[jeux.length - 1].id + 1;
-
     return nextId;
   }
 
-  /**
-   * Returns all games
-   */
   getAll(filterPredicate) {
     let jeux;
     jeux = parse(this.jsonDbPath, this.defaultJeux);
     if (filterPredicate) return jeux.filter(filterPredicate);
     else return jeux;
   }
-  /**
-   * Returns the game identified by id
-   */
 
+<<<<<<< HEAD
   /**
    * Returns the game identified by name
    */
@@ -149,33 +143,23 @@ class Jeux {
     if (foundIndex < 0) return;
     return jeux[foundIndex];
   }
+=======
+>>>>>>> projet_termine
   getOneByName(name) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
     const foundIndex = jeux.findIndex((jeu) => jeu.name == name);
     if (foundIndex < 0) return;
     return jeux[foundIndex];
   }
-  /*
-  getOneByCategory(category) {
-    const jeux = parse(this.jsonDbPath, this.defaultJeux);
-    const foundIndex = jeux.findIndex((jeu) => jeu.category == category);
-    if (foundIndex < 0) return;
-    return jeux[foundIndex];
-  }
-  */
+
+
   getOneByCategory(category) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
     const foundIndex = jeux.filter((jeu) => jeu.category == category);
     return foundIndex;
-  }
-  /**
-   * Add a game in the DB and returns the added game (containing a new id)
-   */
-
+  } 
   addOne(body) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
-
-    // add new game
     const newJeu = {
       id: this.getNextId(),
       name: escape(body.name),
@@ -184,9 +168,8 @@ class Jeux {
       cover: escape(body.cover),
       first_release_date: escape(body.first_release_date),
       involved_companies: escape(body.involved_companies),
-      keywords: escape(body.keywords),
       multiplayer_modes: escape(body.multiplayer_modes),
-      platforms: escape(body.platforms),   
+      platforms: escape(body.platforms),
       summary: escape(body.summary),
       url: escape(body.url),
     };
@@ -195,12 +178,9 @@ class Jeux {
     return newJeu;
   }
 
-  /**
-   * Delete a game in the DB and return the deleted game
-   */
-  deleteOne(id) {
+  deleteOne(name) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
-    const foundIndex = jeux.findIndex((jeu) => jeu.id == id);
+    const foundIndex = jeux.findIndex((jeu) => jeu.name == name);
     if (foundIndex < 0) return;
     const itemRemoved = jeux.splice(foundIndex, 1);
     serialize(this.jsonDbPath, jeux);
@@ -208,29 +188,12 @@ class Jeux {
     return itemRemoved[0];
   }
 
-  /**
-   * Update a game in the DB and return the updated game
-   */
-  updateOne(id, body) {
+  updateOne(name, body) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
-    const foundIndex = jeux.findIndex((jeu) => jeu.id == id);
+    const foundIndex = jeux.findIndex((jeu) => jeu.name == name);
     if (foundIndex < 0) return;
     const updatedJeu = { ...jeux[foundIndex], ...body };
-
     jeux[foundIndex] = updatedJeu;
-
-    serialize(this.jsonDbPath, jeux);
-    return updatedJeu;
-  }
-
-  updateRating(id, body) {
-    const jeux = parse(this.jsonDbPath, this.defaultJeux);
-    const foundIndex = jeux.findIndex((jeu) => jeu.id == id);
-    if (foundIndex < 0) return;
-    const updatedJeu = { ...jeux[foundIndex], ...body };
-
-    jeux[foundIndex] = updatedJeu;
-
     serialize(this.jsonDbPath, jeux);
     return updatedJeu;
   }
@@ -242,57 +205,5 @@ class Jeux {
     return tab;
   }
 }
-
-/* 
-var name;
-var age_ratings;//PEGI RATING 
-var category;
-var cover; //Difference avec artwork ? 
-var first_release_date; //date de sortie 
-var involved_companies;//tableau 
-var keywords;//referencement ? tableau 
-var multiplayer_modes;//Renvoie tableau des differents mode 
-var platforms; // Plateforme sur le quel le jeu est sortie 
-var rating;// Par rapport a la db
-var screenshots;
-var summary;//Description du jeu
-var url; // lien du site du jeu ? 
-var videos;
-*/
-
-/*
-
-class jeu{
-    constructor(name,age_ratings,category,cover,first_release_date,involved_companies,keywords,multiplayer_modes,
-        platforms,rating,screenshots,summary,url,videos){
-            
-    this.name = name;
-    this.age_ratings= age_ratings;
-    this.category = category;
-   
-    this.cover = cover;
-    this.first_release_date = first_release_date;
-    
-    
-   
-    
-    this.involved_companies = involved_companies;
-    this.keywords = keywords;
-    this.multiplayer_modes = multiplayer_modes;
-    this.platforms = platforms;
-    this.rating = rating;
-    
-    this.screenshots = screenshots;
-    
-    
-    
-    this.summary = summary;
-   
-    this.url = url;
-    this.videos = videos;
-    }
-}
-
-*/
 
 module.exports = { Jeux };

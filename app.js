@@ -9,7 +9,6 @@ var classementRouter = require("./routes/classement");
 
 var usersRouter = require("./routes/users");
 var commentaireRouter = require("./routes/commentaires")
-var videosRouter = require("./routes/videos")
 var likeRouter = require("./routes/liked");
 var cors = require("cors");
 let corsOptions = {
@@ -21,7 +20,7 @@ let corsOptions = {
 
 var app = express();
 
-let expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1h;
+let expiryDate = new Date(Date.now() + 60 * 60 * 1000); 
 app.use(
   cookieSession({
     name: "user",
@@ -45,7 +44,6 @@ app.use("/classement",cors(corsOptions),classementRouter);
 
 app.use("/users", cors(corsOptions),usersRouter);
 app.use("/commentaires", cors(corsOptions),commentaireRouter);
-app.use("/videos", cors(corsOptions),videosRouter);
 app.use("/liked",cors(corsOptions),likeRouter)
 
 
