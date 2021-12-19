@@ -123,28 +123,6 @@ class Jeux {
     else return jeux;
   }
 
-<<<<<<< HEAD
-  /**
-   * Returns the game identified by name
-   */
-
-   getOne(id) {
-    const pizzas = parse(this.jsonDbPath, this.defaultPizzas);
-    const foundIndex = pizzas.findIndex((pizza) => pizza.id == id);
-    if (foundIndex < 0) return;
-
-    return pizzas[foundIndex];
-  }
-
-   getOneByid() {
-     let id =  Math.floor(Math.random() * 10)
-    const jeux = parse(this.jsonDbPath, this.defaultJeux);
-    const foundIndex = jeux.findIndex((jeu) => jeu.id == id);
-    if (foundIndex < 0) return;
-    return jeux[foundIndex];
-  }
-=======
->>>>>>> projet_termine
   getOneByName(name) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
     const foundIndex = jeux.findIndex((jeu) => jeu.name == name);
