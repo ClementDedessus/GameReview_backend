@@ -26,7 +26,19 @@ class Commentaire {
     let year = date.getFullYear();
     return `${day}/${month}/${year}     ${hour}:${min}`;
   }
+  updateOne(id ) {
+    const coms = parse(this.jsonDbPath);
+    const foundIndex = coms.findIndex((com) => com.id == id);
+    const like = coms[foundIndex].like;
+    var updatedlike=like
+     updatedlike=like+1;
+    if (foundIndex < 0) return;
+    coms[foundIndex].like = updatedlike;
 
+    serialize(this.jsonDbPath, coms);
+    return coms[foundIndex];
+  }
+  
   addOne(body) {
     const coms = parse(this.jsonDbPath);
     const newComs = {

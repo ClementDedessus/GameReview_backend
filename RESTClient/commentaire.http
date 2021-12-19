@@ -19,7 +19,7 @@ Content-Type: application/json
 
 }
 ###
-PUT {{baseUrl}}/commentaires/3
+PUT {{baseUrl}}/commentaires/1
 
 ###
 PUT {{baseUrl}}/commentaires/23

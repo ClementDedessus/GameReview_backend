@@ -20,4 +20,9 @@ router.post("",  authorizeFromCookie, function (req, res) {
   return res.json(jeu);
 });
 
+router.put("/:id", function (req, res) {
+  const com = comModel.updateOne(req.params.id);
+  if (!com) return res.status(404).end();
+  return res.json(com);
+});
 module.exports = router;
