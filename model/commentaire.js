@@ -19,15 +19,12 @@ class Commentaire {
     return nextId;
   }
 
-  getDateHour() {
-    const date = new Date();
-    let hour = date.getHours();
-    let min = date.getMinutes();
-    let day = date.getDate();
-    let month = date.getMonth();
-    let year = date.getFullYear();
-    return `${day}/${month}/${year} ${hour}:${min}`;
-  }
+getDateHour(){
+    
+        const date = new Date();
+        return date ;
+    
+}
 
   addOne(body) {
     const coms = parse(this.jsonDbPath);
@@ -44,7 +41,7 @@ class Commentaire {
     serialize(this.jsonDbPath, coms);
     return newComs;
   }
-  //unused? 
+
   getAll() {
     const commentaires = parse(this.jsonDbPath);
     return commentaires;
@@ -55,7 +52,6 @@ class Commentaire {
     return all.filter((commentaire) => commentaire.game == game) 
     
   }
-  //unused? 
   updateOne(id) {
     const coms = parse(this.jsonDbPath);
     const foundIndex = coms.findIndex((com) => com.id == id);
@@ -68,7 +64,7 @@ class Commentaire {
     serialize(this.jsonDbPath, coms);
     return coms[foundIndex];
   }
-  //unused? 
+
   updateOneDejalike(id) {
     const coms = parse(this.jsonDbPath);
     const foundIndex = coms.findIndex((com) => com.id == id);

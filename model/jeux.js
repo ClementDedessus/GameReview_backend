@@ -118,8 +118,7 @@ class Jeux {
   }
 
   /**
-   * Returns all games or all game defined by the filter prediacte
-   * 
+   * Returns all games
    */
   getAll(filterPredicate) {
     let jeux;
@@ -131,6 +130,10 @@ class Jeux {
    * Returns the game identified by id
    */
 
+  /**
+   * Returns the game identified by name
+   */
+
    getOne(id) {
     const pizzas = parse(this.jsonDbPath, this.defaultPizzas);
     const foundIndex = pizzas.findIndex((pizza) => pizza.id == id);
@@ -139,9 +142,6 @@ class Jeux {
     return pizzas[foundIndex];
   }
 
-  /*
-  *
-  */
    getOneByid() {
      let id =  Math.floor(Math.random() * 10)
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
@@ -149,9 +149,6 @@ class Jeux {
     if (foundIndex < 0) return;
     return jeux[foundIndex];
   }
-  /**
-   * Returns the game identified by name
-   */
   getOneByName(name) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
     const foundIndex = jeux.findIndex((jeu) => jeu.name == name);
@@ -166,36 +163,10 @@ class Jeux {
     return jeux[foundIndex];
   }
   */
- /*
   getOneByCategory(category) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
     const foundIndex = jeux.filter((jeu) => jeu.category == category);
     return foundIndex;
-  }
-  */
-   /*
-   *Get games by category
-   */
-  getOneByCategory(category) {
-    const jeux = parse(this.jsonDbPath, this.defaultJeux);
-    const tableauJeuParcategory=jeux.filter((jeu) => jeu.category == category);
-    const tab= [];
-    const foundIndex = jeux.filter((jeu) => jeu.category == category);
-    let indice =Math.floor(Math.random() * foundIndex.length);
-    let indiceRemoved =foundIndex.splice(indice,1)
-    let indice2 =Math.floor(Math.random() * foundIndex.length);
-    let indiceRemoved2 = foundIndex.splice(indice2,1)
-    let indice3 =Math.floor(Math.random() * foundIndex.length);
-    let indiceRemoved3 =foundIndex.splice(indice3,1)
-    while(indice === indice2 || indice === indice3 || indice2 === indice3){
-      indice =Math.floor(Math.random() * tableauJeuParcategory.length);
-      indice2 =Math.floor(Math.random() * tableauJeuParcategory.length);
-      indice3 =Math.floor(Math.random() * tableauJeuParcategory.length);
-    }
-    tab.push(tableauJeuParcategory[indice])
-    tab.push(tableauJeuParcategory[indice2])
-    tab.push(tableauJeuParcategory[indice3])
-    return tab
   }
   /**
    * Add a game in the DB and returns the added game (containing a new id)
@@ -203,6 +174,8 @@ class Jeux {
 
   addOne(body) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
+
+    // add new game
     const newJeu = {
       id: this.getNextId(),
       name: escape(body.name),
@@ -285,6 +258,41 @@ var screenshots;
 var summary;//Description du jeu
 var url; // lien du site du jeu ? 
 var videos;
+*/
+
+/*
+
+class jeu{
+    constructor(name,age_ratings,category,cover,first_release_date,involved_companies,keywords,multiplayer_modes,
+        platforms,rating,screenshots,summary,url,videos){
+            
+    this.name = name;
+    this.age_ratings= age_ratings;
+    this.category = category;
+   
+    this.cover = cover;
+    this.first_release_date = first_release_date;
+    
+    
+   
+    
+    this.involved_companies = involved_companies;
+    this.keywords = keywords;
+    this.multiplayer_modes = multiplayer_modes;
+    this.platforms = platforms;
+    this.rating = rating;
+    
+    this.screenshots = screenshots;
+    
+    
+    
+    this.summary = summary;
+   
+    this.url = url;
+    this.videos = videos;
+    }
+}
+
 */
 
 module.exports = { Jeux };
