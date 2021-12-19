@@ -32,10 +32,6 @@ class Like {
     return newComs;
   }
 
-  getAll() {
-    const commentaires = parse(this.jsonDbPath);
-    return commentaires;
-  }
   getAllgame(expediteur) {
     const commentaires = parse(this.jsonDbPath);
 
@@ -66,6 +62,13 @@ class Like {
       somme += parseInt(1);
     });
     return somme;
+  }
+
+  getVote(name) {
+    const commentaires = parse(this.jsonDbPath);
+    let index= commentaires.findIndex((like)=>like.expediteur == name)
+    if (index <0) return true;
+    return false;
   }
 }
 

@@ -24,7 +24,7 @@ class Users {
   getOneByUsername(username) {
     const items = parse(this.jsonDbPath, this.defaultItems);
     const foundIndex = items.findIndex((item) => item.username == username);
-    if (foundIndex < 0) return;
+    if (foundIndex < 0) return ;
 
     return items[foundIndex];
   }
@@ -53,7 +53,7 @@ class Users {
   async register(username, password) {
     const items = parse(this.jsonDbPath, this.defaultItems);
     const userFound = this.getOneByUsername(username);
-    if (userFound) return;
+    if (userFound) return ;
 
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     const newitem = {
@@ -135,6 +135,13 @@ class Users {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     return hashedPassword;
   }
+  getUsername(name) {
+    const items = parse(this.jsonDbPath, this.defaultItems);
+    const foundIndex = items.findIndex((item) => item.username == name);
+    if (foundIndex < 0) return false ;
+    return true;
+  }
+
 }
 
 module.exports = { Users };

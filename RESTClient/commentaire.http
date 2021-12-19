@@ -44,3 +44,5 @@ GET {{baseUrl}}/liked/game/New World
 ###
 GET {{baseUrl}}/liked/votant/New World
 
+###
+GET {{baseUrl}}/liked/like/k133

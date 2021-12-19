@@ -25,4 +25,9 @@ router.get("/votant/:game", function (req, res) {
   console.log("GET /commentaire");
   return res.json(comModel.getNbvotant(req.params.game));
 });
+
+
+router.get("/like/:expediteur", function (req, res) {
+  return res.json(comModel.getVote(req.params.expediteur));
+});
 module.exports = router;

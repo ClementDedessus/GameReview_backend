@@ -133,25 +133,8 @@ class Jeux {
 
   getOneByCategory(category) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
-    const tableauJeuParcategory=jeux.filter((jeu) => jeu.category == category);
-    const tab= [];
     const foundIndex = jeux.filter((jeu) => jeu.category == category);
-    let indice =Math.floor(Math.random() * foundIndex.length);
-    let indiceRemoved =foundIndex.splice(indice,1)
-    let indice2 =Math.floor(Math.random() * foundIndex.length);
-    let indiceRemoved2 = foundIndex.splice(indice2,1)
-    let indice3 =Math.floor(Math.random() * foundIndex.length);
-    let indiceRemoved3 =foundIndex.splice(indice3,1)
-    while(indice === indice2 || indice === indice3 || indice2 === indice3){
-      indice =Math.floor(Math.random() * tableauJeuParcategory.length);
-      indice2 =Math.floor(Math.random() * tableauJeuParcategory.length);
-      indice3 =Math.floor(Math.random() * tableauJeuParcategory.length);
-    }
-    tab.push(tableauJeuParcategory[indice])
-    tab.push(tableauJeuParcategory[indice2])
-    tab.push(tableauJeuParcategory[indice3])
-    //return `${foundIndex[indice].name}  ${foundIndex[indice2].name}  ${foundIndex[indice3].name}`;
-    return tab
+    return foundIndex;
   } 
   addOne(body) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
@@ -186,16 +169,6 @@ class Jeux {
   updateOne(name, body) {
     const jeux = parse(this.jsonDbPath, this.defaultJeux);
     const foundIndex = jeux.findIndex((jeu) => jeu.name == name);
-    if (foundIndex < 0) return;
-    const updatedJeu = { ...jeux[foundIndex], ...body };
-    jeux[foundIndex] = updatedJeu;
-    serialize(this.jsonDbPath, jeux);
-    return updatedJeu;
-  }
-
-  updateRating(id, body) {
-    const jeux = parse(this.jsonDbPath, this.defaultJeux);
-    const foundIndex = jeux.findIndex((jeu) => jeu.id == id);
     if (foundIndex < 0) return;
     const updatedJeu = { ...jeux[foundIndex], ...body };
     jeux[foundIndex] = updatedJeu;

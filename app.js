@@ -17,7 +17,7 @@ let corsOptions = {
 
 var app = express();
 
-let expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1h;
+let expiryDate = new Date(Date.now() + 60 * 60 * 1000); 
 app.use(
   cookieSession({
     name: "user",

@@ -24,4 +24,7 @@ router.put("/:username/test", authorizeFromCookie, function (req, res) {
   return res.json(users);
 });
 
+router.get("/username/:username", function (req, res) {
+  return res.json(userModel.getUsername(req.params.username));
+});
 module.exports = router;
