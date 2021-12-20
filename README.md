@@ -7,6 +7,6 @@ Auteurs:
 *ClementDedessus
 
 
-Attention lors de l'ajout d'un jeu, la cover doit être un lien comme ce site propose : https://alphacoders.com/
+Attention lors de l'ajout d'un jeu, la cover doit être un lien vers une image comme ce site propose : https://alphacoders.com/
 
 
